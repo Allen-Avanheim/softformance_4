@@ -16,7 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+import users.views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('feed_list.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', users.views.home_redirect),
+    path('home/', include('users.urls')),
 ]
