@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <style>
+        body {
+            color: darkblue;
+            text-align: left;
+        }
+
+        a {
+            color: darkred;
+        }
+
+    </style>
+    <title>Home</title>
+</head>
+<body>
+
+<h1>Hello, {{ user.username|default:'Guest' }}</h1>
+
+{% if not user.username %}
+    <h3>Login: <a>user1</a> ; Password: <a>qwerty5683</a></h3>
+    <h3>Login: <a>user2</a> ; Password: <a>qwerty5683</a></h3>
+    <h3>Login: <a>user3</a> ; Password: <a>qwerty5683</a></h3>
+{% endif %}
+
+<h2> Welcome to the site</h2>
+<div>
+    {% if user.is_authenticated %}
+
+        <a href="{% url 'logout' %}">Logout</a>
+        <hr>
+        <button onclick="document.location='{% url 'users:filter' 'all_posts' %}'">All posts</button>
+        <button onclick="document.location='{% url 'users:filter' 'my_posts' %}'">My posts</button>
+        <button onclick="document.location='{% url 'users:filter' 'peoples_posts' %}'">Posts from people I follow.
+        </button>
+
+    {% else %}
+        <a href="{% url 'users:signup' %}">Sign Up</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'login' %}">Login</a>
+        <hr>
+        <button onclick="document.location='{% url 'users:filter' 'all_posts' %}'">All posts</button>
+        <button onclick="document.location='{% url 'login' %}'">My posts</button>
+        <button onclick="document.location='{% url 'login' %}'">Posts from people I follow.</button>
+    {% endif %}
+</div>
+<hr>
+
+<ul>
+    {% for item in feed_items %}
+        <li>{{ item.content }}</li>
+        <hr>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

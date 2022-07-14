@@ -1,5 +1,19 @@
-{% block title %}Login{% endblock %}
+<html lang="en">
+<head>
+    <style>
+        body {
+            color: darkblue;
+            text-align: left;
+        }
 
+        button {
+            color: darkred;
+        }
+
+    </style>
+    <title>Home</title>
+</head>
+<body>
 {% block content %}
     <h2>Login</h2>
 
@@ -14,11 +28,11 @@
         </table>
     </form>
     <form action="{% url 'users:signup' %}">
-        <td>&nbsp;</td>
         <button>Registration</button>
     </form>
     <form action="{% url 'users:home' %}">
-        <td>&nbsp;</td>
         <button>Home</button>
     </form>
 {% endblock %}
+</body>
+</html>
